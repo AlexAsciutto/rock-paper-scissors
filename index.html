@@ -14,13 +14,13 @@
 function getComputerValue() {
     randomValue = Math.floor(Math.random() * 3);
     if (randomValue == "1") {
-        return "Rock";
+        return "rock";
     }
     else if (randomValue == "2") {
-        return "Paper";
+        return "paper";
     }
     else {
-        return "Scissors";
+        return "scissors";
     }
 }
 
@@ -33,23 +33,25 @@ function getComputerValue() {
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         return `It's a tie! You both picked ${playerSelection}`;
-    } else if (playerSelection === "Rock" && computerSelection === "Paper") {
+    } else if (
+        (playerSelection === 'rock' && computerSelection === 'paper') ||
+        (playerSelection === 'paper' && computerSelection === 'scissors') ||
+        (playerSelection === 'scissors' && computerSelection === 'rock')
+    ) {
         return `You lost! ${computerSelection} beats ${playerSelection}`;
-    } else if (playerSelection === "Paper" && computerSelection === "Rock") {
+    } else if (
+        (playerSelection === 'paper' && computerSelection === 'rock') ||
+        (playerSelection === 'rock' && computerSelection === 'scissors') ||
+        (playerSelection === 'scissors' && computerSelection === 'paper')
+    ) {
         return `You won! ${playerSelection} beats ${computerSelection}`;
-    } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
-        return `You won! ${playerSelection} beats ${computerSelection}`;
-    } else if (playerSelection === "Scissors" && computerSelection === "Rock") {
-        return `You lost! ${computerSelection} beats ${playerSelection}`;
-    } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
-        return `You won! ${playerSelection} beats ${computerSelection}`;
-    } else if (playerSelection === "Paper" && computerSelection === "Scissors") {
-        return `You lost! ${computerSelection} beats ${playerSelection}`;
     }
 }
 
-const computerSelection = getComputerValue();
-console.log(playRound(playerSelection, computerSelection))
+computerSelection = getComputerValue();
+let playerSelection = prompt(`Enter 'Rock', 'Paper', or 'Scissors' ...`);
+playerSelection = playerSelection.toLowerCase();
+console.log(playRound(playerSelection, computerSelection));
 
 </script>
 </body>
